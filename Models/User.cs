@@ -9,7 +9,7 @@ public class User
     public string FullName { get; set; } = string.Empty;
     [Required, MaxLength(180)]
     public string Email { get; set; } = string.Empty;
-    [Required, MaxLength(20)]
+    [Required, MaxLength(300)]
     public string PasswordHash { get; set; } = string.Empty;
 
     [Required, MaxLength(15)]

@@ -25,6 +25,16 @@ public class AppDbContext : DbContext
             .HasIndex(c => new { c.UserId, c.ProductId })
             .IsUnique();
 
+        modelBuilder.Entity<Category>()
+            .HasIndex(c => c.Slug)
+            .IsUnique();
+
+        modelBuilder.Entity<Product>()
+            .HasOne(p => p.Category)
+            .WithMany(c => c.Products)
+            .HasForeignKey(p => p.CategoryId)
+            .OnDelete(DeleteBehavior.Restrict);
+
         modelBuilder.Entity<Category>().HasData(
             new Category { Id = 1, Name = "Electronics", Slug = "electronics" },
             new Category { Id = 2, Name = "Accessories", Slug = "accessories" }
